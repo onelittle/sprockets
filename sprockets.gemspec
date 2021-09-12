@@ -38,6 +38,7 @@ Gem::Specification.new do |s|
     s.add_development_dependency "zopfli", "~> 0.0.4"
   end
   s.add_development_dependency "rubocop-performance", "~> 1.3"
+  s.add_development_dependency "base32", "~> 0.3.4"
 
   s.required_ruby_version = '>= 2.5.0'
 

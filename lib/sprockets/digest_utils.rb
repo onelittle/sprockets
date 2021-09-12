@@ -19,6 +19,7 @@ module Sprockets
 
     # Internal: Maps digest bytesize to the digest class.
     DIGEST_SIZES = {
+      8 => Kernel.const_defined?(:Base32) ? Base32 : nil,
       16 => Digest::MD5,
       20 => Digest::SHA1,
       32 => Digest::SHA256,
@@ -189,6 +190,8 @@ module Sprockets
 
       if hexdigest = name.scan(/[a-fA-F0-9]+\z/).last
         detect_digest_class(unpack_hexdigest(hexdigest))
+      elsif hexdigest = name.scan(/[A-Z0-9]{8}\z/).last
+        detect_digest_class(hexdigest)
       end
     end
 
